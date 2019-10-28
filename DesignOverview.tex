@@ -7,6 +7,12 @@
 Talk about having to wait address translation to be complete before we can 
 proceed to perform the hash table lookup, hence we don't have a way to tolerate the latency
 introduced by the table lookup. 
+\begin{figure}
+  \center{\includegraphics[width=0.95\linewidth]
+    {figures/L1VC.pdf}}
+  \caption{Proposed GPU virtual cache hierarchy.}
+  \label{figure:VCDSR_GPU}
+\end{figure}
 \subsection{Tolerating introduced latency}
 \subsection{Issues with present scheme(not one-to-one and increased tag size)}
 
