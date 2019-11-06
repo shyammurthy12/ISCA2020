@@ -1,4 +1,22 @@
-\section{Evaluation Methodology}
-- gem5 simulator
-- spec2006 apps
-- config params 
+\section{Experimental Setup}
+We use the gem5 simulator \cite{gem5} for the implementation and evaluation of our modified cache indexing scheme. We run applications from the SPECINT2006 and SPECFP2006 suite \cite{spec2006}. For each application we fast-forward the first 10 billion instructions and simulate the next 1 billion instructions on an out of order CPU. We use the reference input dataset for all the SPEC2006 applications. The configuration parameters are shown in Table \ref{table:config_param}.
+
+\begin{table}[h]
+	\caption {Configuration parameters}
+	\begin{center}
+		\begin{tabular}{|c||c|}
+			\hline
+			CPU & Out-of-order CPU, 8-issue \\
+			\hline
+			L1D Virtual Cache & 64KB, 2-way, 64B \\
+			\hline
+			L1I Physical Cache & 32KB, 2-way, 64B \\
+			\hline
+			L2 Physical Cache & 2MB, 8-way, 64B \\
+			\hline
+			L3 Physical Cache & None \\
+			\hline
+			Main Memory & 
+
+
+\end{table}
