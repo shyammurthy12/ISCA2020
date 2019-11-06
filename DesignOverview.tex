@@ -12,7 +12,14 @@ The hashing scheme involves swizzling of certain bits from the original tag and 
 \end{figure*}
 
 \subsection{Multiple static hash schemes}
-In order to provide more security, we can add more hashing schemes in hardware and use(assign?) them at page granularity which is described in detail in later sections(Section No?). The hardware implements multiple hash schemes, one of which is chosen using the lower bits of the page number. With this approach, the adversary has to learn multiple schemes. Additionally, he has no knowledge of the scheme used by the address referenced by the victim which adds more entropy.
+In order to provide more security, we can add more hashing schemes in hardware and use them at page granularity which is described in detail in later sections(Section No?). The hardware implements multiple hash schemes, one of which is chosen using the lower bits of the page number as shown in Fig. \ref{figure:multiple_schemes}. With this approach, the adversary has to learn multiple schemes. Additionally, he has no knowledge of the scheme used by the address referenced by the victim which adds more entropy.
+
+\begin{figure*}
+  \center{\includegraphics[width=\textwidth]
+    {figures/MultipleHashSchemes.pdf}}
+  \caption{Multiple hash schemes implemented in the fixed function hardware}
+  \label{figure:multiple_schemes}
+\end{figure*}
 
 \subsection{Multiple changing hash schemes}
 Instead of using statically determined hash schemes, we can provide more security by using a different hash scheme at different points of time for the same page. This can be achieved by maintaining a lookup table where each entry stores the current hash scheme and the count of cachelines using this scheme. We recycle the hash scheme for an entry once all the blocks from the pages mapped to this entry have been evicted from the L1D cache. The duration for which one or more blocks from the page are resident in the cache is refereed to as the \textit{lifetime of page in the cache}. We leverage the shorter lifetimes of pages in the L1D cache to give us a periodic change in the hashing scheme used to index into the cache. The changing hash schemes force the attacker to periodically learn the hash scheme stored in the entry of interest of the lookup table.
