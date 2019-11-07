@@ -1,5 +1,51 @@
 \section{Performance Impact}
 There are a few reasons for change in peformance with the changes we introduce. Firstly, we affect the placement of blocks in the cache, which affects the number of cache misses. We have extra logic to compute the new set index from the address bits, for all the three design schemes proposed. This has the potential to introduce additional latency before we can access the L1 cache, and could affect performance. For the last scheme, we have a table containing the hash scheme that has to be looked up, before we can compute the modified index. This has the potential to add extra latency before we can access the L1 cache.   
+
+\begin{table}[h]
+	\caption {Impact of Design on MPKI}
+	\begin{tabular}{|c||c||c||c|}
+	      \hline
+	      Workload Name & Baseline & Hashed Indexing & Fully Associative\\
+	      \hline
+		astar & 35.21 & 16.473 & 5.12\\
+	      \hline
+		milc & 69.536 & 69.64 & 69.62\\
+	      \hline
+		sphinx3 & 60.26 & 59.936 & 59.688\\
+	      \hline
+		zeusmp & 34.75 & 35.26 & 35.281\\
+	      \hline
+		GemsFDTD & 55.86 & 48.85 & 48.45\\
+	      \hline
+		lbm & 88.34 & 88.64 & 91.464\\
+	      \hline
+		bwaves & 0.453 & 0.449 & 0.445\\
+	      \hline 
+		namd & 12.41 & 16.77 & 7.36\\
+	      \hline
+		calculix & 32.82 & 33.33 & 33.11\\
+	      \hline
+		leslie3d & 83.52 & 84.55 & 82.486\\
+	      \hline
+		gromacs & 29.18 & 29.412 & 29.29\\
+	      \hline
+		bzip2 & 19.47 & 18.92 & 18.21\\
+	      \hline
+		mcf & 24.85 & 24.41 & 23.69\\
+	      \hline
+		hmmer & 0.78 & 0.69 & 0.47\\
+	      \hline
+		h264ref & 9.69 & 10.365 & 10.248\\
+	      \hline
+		omnetpp & 19.58 & 19.64 & 20.4795\\
+	      \hline 
+		sjeng & 7.47 & 6.96 & 6.318\\
+	      \hline
+		libquantum & 132.11 & 132.11 & 132.11\\
+	      \hline
+	  \end{tabular}
+\end{table}
+
 \subsection {Impact on Cache Misses}
 We measure the impact on number of cache misses by measuring the MPKI as well as miss rates for different applications. The MPKI improves a lot for \textit{astar} as well as \textit{GemsFDTD}. This is not unexpected, as was studied by Seznec et.al \cite{skewed}, allowing placement of blocks at different locations in the cache. It has the benefit of adding more associativity and bringing down the number of conflict misses. To validate this assumption of ours, we also run the applications with a fully associative cache, to understand how much benefit the different applications see from bringing down all conflict misses. The same applications, namely \textit{astar} and \textit{GemsFDTD}, see most benefit from moving to a fully associative cache and the other applications are negligibly impacted by increase in associativity, which ties in well with the observations we made with our cache placement strategy.   
 \subsection {Storage Overheads} <table storage>
