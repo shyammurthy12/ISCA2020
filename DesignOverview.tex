@@ -1,4 +1,7 @@
 \section{Design Overview}
+\subsection{Design Philosophy and Basics}
+The main idea to mitigate the kind of attacks described in our threat model (Section no?) is to hide the information about the set index from an adversary. This ties in well to the philosophy of a fully associative cache where we have a single set allowing us to place the block in any of the ways. Therefore, any knowledge obtained from the eviction of attacker's cachelines does not provide him with any meaningful information about the victim's address bits. We try to achieve this by introducing randomness in the placement of blocks in the cache. This effectively increases the associativity of the cache as was shown by Seznec et al in \cite{skewed cache}. It gives us an additional benefit of reduced conflict misses.
+
 A fixed-function hardware as shown in Fig. \ref{figure:fixed_func_hw}, computes the L1D-cache set index based on the address bits of the memory reference. The design seeks to randomize the mapping from addresses to sets in the cache.  The hash employed is different for different addresses, as the hashing scheme involves using a swizzle of certain bits from the tag. The hash obtained after the application of the hashing scheme to the address is XOR'ed with the original index bits to generate the new cache set index. This ensures a many-to-many mapping from the original index to the index generated after applying the hashing scheme. 
 
 \subsection{Single static hash scheme}
