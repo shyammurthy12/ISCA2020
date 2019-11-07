@@ -20,12 +20,19 @@ In order to provide more security, we can add more hashing schemes in hardware a
 \begin{figure*}
   \center{\includegraphics[width=\textwidth]
     {figures/MultipleHashSchemes.pdf}}
-  \caption{Multiple hash schemes implemented in the fixed function hardware}
+  \caption{Multiple static hash schemes implemented in the fixed function hardware}
   \label{figure:multiple_schemes}
 \end{figure*}
 
-\subsection{Multiple changing hash schemes}
-Instead of using statically determined hash schemes, we can provide more security by using a different hash scheme at different points of time for the same page. This can be achieved by maintaining a lookup table where each entry stores the current hash scheme and the count of cachelines using this scheme. We recycle the hash scheme for an entry once all the blocks from the pages mapped to this entry have been evicted from the L1D cache. The duration for which one or more blocks from the page are resident in the cache is refereed to as the \textit{lifetime of page in the cache}. We leverage the shorter lifetimes of pages in the L1D cache to give us a periodic change in the hashing scheme used to index into the cache. The changing hash schemes force the attacker to periodically learn the hash scheme stored in the entry of interest of the lookup table.
+\begin{figure*}
+  \center{\includegraphics[width=\textwidth]
+    {figures/ChangingHashScheme.pdf}}
+  \caption{Multiple implicitly recycling hash schemes}
+  \label{figure:changing_schemes}
+\end{figure*}
+
+\subsection{Multiple recycling hash schemes}
+Instead of using statically determined hash schemes, we can provide more security by using a different hash scheme at different points of time for the same page. This can be achieved by maintaining a lookup table as shown in Fig. \cite{figure:changing_schemes}, where each entry stores the current hash scheme and the count of cachelines using this scheme. We recycle the hash scheme for an entry once all the blocks from the pages mapped to this entry have been evicted from the L1D cache. The duration for which one or more blocks from the page are resident in the cache is refereed to as the \textit{lifetime of page in the cache}. We leverage the shorter lifetimes of pages in the L1D cache to give us a periodic change in the hashing scheme used to index into the cache. The changing hash schemes force the attacker to periodically learn the hash scheme stored in the entry of interest of the lookup table.
 
 \subsubsection{Hash lifetimes: Variation with entries}
 The duration for which a particular hash scheme is assigned to the entry in the lookup table is called the hash lifetime. Fig. \ref{figure:Hash_lifetime} shows the hash lifetimes variations with different number of lookup table entries. We observe that as we increase the number of entries in the lookup table, the percentage of hash entries with longer lifetimes reduce for most of the applications. This is because fewer pages get mapped to the same entry which enables faster recycling of hash schemes. Applications like <TODO: blah blah> see an increase in the percentage of hash entries with longer lifetimes because pages with longer lifetimes in the cache are getting mapped to different entries in the table, thus increasing hash lifetimes.
