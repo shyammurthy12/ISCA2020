@@ -3,47 +3,47 @@ There are a few reasons for change in peformance with the changes we introduce. 
 
 \begin{table}[h]
 	\caption {Impact of Design on MPKI}
-	\begin{tabular}{|c||c||c||c|}
+	\begin{tabular}{|c||c||c||c||c||c|}
 	      \hline
-	      Workload Name & Baseline & Hashed Indexing & Fully Associative\\
+		Workload Name & Baseline & Single Hash Scheme & Multiple Static Hash Schemes & Changing Hash Schemes & Fully Associative\\
 	      \hline
-		astar & 35.21 & 16.473 & 5.12\\
+		astar & 35.21 & 20.45 & 18.26 & 16.47 & 5.12\\
 	      \hline
-		milc & 69.536 & 69.64 & 69.62\\
+		milc & 69.54 & 69.63 & 69.63 & 69.64 & 69.62\\
 	      \hline
-		soplex & 91.58 & 91.5 & 91.5 \\ 
+		soplex & 91.58 & 91.48 & 91.57 & 91.5 & 91.5 \\ 
 	      \hline
-		sphinx3 & 60.26 & 59.936 & 59.688\\
+		sphinx3 & 60.26 & 60.0 & 59.84 & 59.936 & 59.688\\
 	      \hline
-		zeusmp & 34.75 & 35.26 & 35.281\\
+		zeusmp & 34.75 & 35.20 & 34.97 & 35.26 & 35.281\\
 	      \hline
-		GemsFDTD & 55.86 & 48.85 & 48.45\\
+		GemsFDTD & 55.86 & 48.79 & 48.88 & 48.85 & 48.45\\
 	      \hline
-		lbm & 88.34 & 88.64 & 91.464\\
+		lbm & 88.34 & 87.48 & 88.61 & 88.64 & 91.464\\
 	      \hline
-		bwaves & 0.453 & 0.449 & 0.445\\
+		bwaves & 0.45 & 0.44 & 0.48 & 0.45 & 0.45\\
 	      \hline 
-		namd & 12.41 & 16.77 & 7.36\\
+		namd & 12.41 & 11.65 & 17.31 & 16.77 & 7.36\\
 	      \hline
-		calculix & 32.82 & 33.33 & 33.11\\
+		calculix & 32.82 & 33.01 & 33.85 & 33.33 & 33.11\\
 	      \hline
-		leslie3d & 83.52 & 84.55 & 82.486\\
+		leslie3d & 83.52 & 85.02 & 85.26 & 84.55 & 82.486\\
 	      \hline
-		gromacs & 29.18 & 29.412 & 29.29\\
+		gromacs  & 29.18 &29.29 & 29.20 & 29.41 & 29.29\\
 	      \hline
-		bzip2 & 19.47 & 18.92 & 18.21\\
+		bzip2 & 19.47 & 18.88 & 18.94 & 18.92 & 18.21\\
 	      \hline
-		mcf & 24.85 & 24.41 & 23.69\\
+		mcf & 24.85 & 24.68 & 24.45 & 24.41 & 23.69\\
 	      \hline
-		hmmer & 0.78 & 0.69 & 0.47\\
+		hmmer & 0.78 & 0.69 & 0.84 & 0.69 & 0.47\\
 	      \hline
-		h264ref & 9.69 & 10.365 & 10.248\\
+		h264ref & 9.69 & 9.64 & 11.16 & 10.365 & 10.248\\
 	      \hline
-		omnetpp & 19.58 & 19.64 & 20.4795\\
+		omnetpp & 19.58 & 19.69 & 19.39 & 19.64 & 20.4795\\
 	      \hline 
-		sjeng & 7.47 & 6.96 & 6.318\\
+		sjeng & 7.47 & 8.219 & 7.429 & 6.96 & 6.318\\
 	      \hline
-		libquantum & 132.11 & 132.11 & 132.11\\
+		libquantum & 132.11 & 132.11 & 132.10 & 132.11 & 132.11\\
 	      \hline
 	  \end{tabular}
 \end{table}
